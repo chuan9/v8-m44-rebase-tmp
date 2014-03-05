@@ -3258,7 +3258,7 @@ TryStatement* Parser::ParseTryStatement(bool* ok) {
   Block* try_block = ParseBlock(NULL, CHECK_OK);
 
   Token::Value tok = peek();
-  if (tok != Token::CATCH && tok != Token::FINALLY) {
+  if (tok != Token::CATCH && tok != Token::finalLY) {
     ReportMessage("no_catch_or_finally");
     *ok = false;
     return NULL;
@@ -3288,9 +3288,9 @@ TryStatement* Parser::ParseTryStatement(bool* ok) {
   }
 
   Block* finally_block = NULL;
-  DCHECK(tok == Token::FINALLY || catch_block != NULL);
-  if (tok == Token::FINALLY) {
-    Consume(Token::FINALLY);
+  DCHECK(tok == Token::finalLY || catch_block != NULL);
+  if (tok == Token::finalLY) {
+    Consume(Token::finalLY);
     finally_block = ParseBlock(NULL, CHECK_OK);
   }
 

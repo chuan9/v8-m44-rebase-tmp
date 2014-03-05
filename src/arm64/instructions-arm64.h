@@ -498,7 +498,7 @@ const unsigned kDebugMessageOffset = 3 * kInstructionSize;
 // once. Otherwise TRACE_ENABLE and TRACE_DISABLE will enable or disable tracing
 // before every instruction for the specified LOG_ parameters.
 //
-// TRACE_OVERRIDE enables the specified LOG_ parameters, and disabled any
+// TRACE_override enables the specified LOG_ parameters, and disabled any
 // others that were not specified.
 //
 // For example:
@@ -530,7 +530,7 @@ enum DebugParameters {
   // Trace control.
   TRACE_ENABLE   = 1 << 6,
   TRACE_DISABLE  = 2 << 6,
-  TRACE_OVERRIDE = 3 << 6
+  TRACE_override = 3 << 6
 };
 
 

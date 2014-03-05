@@ -1647,7 +1647,7 @@ class LLoadRoot final : public LTemplateInstruction<1, 0, 0> {
 };
 
 
-class LLoadKeyed FINAL : public LTemplateInstruction<1, 2, 2> {
+class LLoadKeyed final : public LTemplateInstruction<1, 2, 2> {
  public:
   LLoadKeyed(LOperand* elements, LOperand* key,
              LOperand* temp, LOperand* temp2) {
@@ -2211,7 +2211,7 @@ class LStoreNamedGeneric final : public LTemplateInstruction<0, 3, 0> {
 };
 
 
-class LStoreKeyed FINAL : public LTemplateInstruction<0, 3, 2> {
+class LStoreKeyed final : public LTemplateInstruction<0, 3, 2> {
  public:
   LStoreKeyed(LOperand* object, LOperand* key, LOperand* value,
               LOperand* temp, LOperand* temp2) {

@@ -939,7 +939,7 @@ PreParser::Statement PreParser::ParseTryStatement(bool* ok) {
   ParseBlock(CHECK_OK);
 
   Token::Value tok = peek();
-  if (tok != Token::CATCH && tok != Token::FINALLY) {
+  if (tok != Token::CATCH && tok != Token::finalLY) {
     ReportMessageAt(scanner()->location(), "no_catch_or_finally");
     *ok = false;
     return Statement::Default();
@@ -956,8 +956,8 @@ PreParser::Statement PreParser::ParseTryStatement(bool* ok) {
     }
     tok = peek();
   }
-  if (tok == Token::FINALLY) {
-    Consume(Token::FINALLY);
+  if (tok == Token::finalLY) {
+    Consume(Token::finalLY);
     ParseBlock(CHECK_OK);
   }
   return Statement::Default();

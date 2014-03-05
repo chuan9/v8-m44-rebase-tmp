@@ -3192,10 +3192,16 @@ void LCodeGen::DoLoadKeyedExternalArray(LLoadKeyed* instr) {
                        result, Operand(0x80000000));
         }
         break;
+      case INT32x4_ELEMENTS:
       case FLOAT32_ELEMENTS:
+      case FLOAT32x4_ELEMENTS:
       case FLOAT64_ELEMENTS:
+      case FLOAT64x2_ELEMENTS:
+      case EXTERNAL_INT32x4_ELEMENTS:
       case EXTERNAL_FLOAT32_ELEMENTS:
+      case EXTERNAL_FLOAT32x4_ELEMENTS:
       case EXTERNAL_FLOAT64_ELEMENTS:
+      case EXTERNAL_FLOAT64x2_ELEMENTS:
       case FAST_DOUBLE_ELEMENTS:
       case FAST_ELEMENTS:
       case FAST_SMI_ELEMENTS:
@@ -4095,7 +4101,7 @@ void LCodeGen::DoCallNewArray(LCallNewArray* instr) {
   AllocationSiteOverrideMode override_mode =
       (AllocationSite::GetMode(kind) == TRACK_ALLOCATION_SITE)
           ? DISABLE_ALLOCATION_SITES
-          : DONT_OVERRIDE;
+          : DONT_override;
 
   if (instr->arity() == 0) {
     ArrayNoArgumentConstructorStub stub(isolate(), kind, override_mode);
@@ -4346,10 +4352,16 @@ void LCodeGen::DoStoreKeyedExternalArray(LStoreKeyed* instr) {
       case UINT32_ELEMENTS:
         __ sw(value, mem_operand);
         break;
+      case INT32x4_ELEMENTS:
       case FLOAT32_ELEMENTS:
+      case FLOAT32x4_ELEMENTS:
       case FLOAT64_ELEMENTS:
+      case FLOAT64x2_ELEMENTS:
+      case EXTERNAL_INT32x4_ELEMENTS:
       case EXTERNAL_FLOAT32_ELEMENTS:
+      case EXTERNAL_FLOAT32x4_ELEMENTS:
       case EXTERNAL_FLOAT64_ELEMENTS:
+      case EXTERNAL_FLOAT64x2_ELEMENTS:
       case FAST_DOUBLE_ELEMENTS:
       case FAST_ELEMENTS:
       case FAST_SMI_ELEMENTS:

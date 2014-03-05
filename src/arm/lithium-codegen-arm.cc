@@ -3207,15 +3207,15 @@ void LCodeGen::DoDeferredSIMD128ToTagged(LInstruction* instr,
 
 template<class T>
 void LCodeGen::DoLoadKeyedSIMD128ExternalArray(LLoadKeyed* instr) {
-  class DeferredSIMD128ToTagged FINAL : public LDeferredCode {
+  class DeferredSIMD128ToTagged final : public LDeferredCode {
    public:
     DeferredSIMD128ToTagged(LCodeGen* codegen, LInstruction* instr,
                             Runtime::FunctionId id)
         : LDeferredCode(codegen), instr_(instr), id_(id) { }
-    virtual void Generate() OVERRIDE {
+    virtual void Generate() override {
       codegen()->DoDeferredSIMD128ToTagged(instr_, id_);
     }
-    virtual LInstruction* instr() OVERRIDE { return instr_; }
+    virtual LInstruction* instr() override { return instr_; }
    private:
     LInstruction* instr_;
     Runtime::FunctionId id_;
@@ -4224,7 +4224,7 @@ void LCodeGen::DoCallNewArray(LCallNewArray* instr) {
   AllocationSiteOverrideMode override_mode =
       (AllocationSite::GetMode(kind) == TRACK_ALLOCATION_SITE)
           ? DISABLE_ALLOCATION_SITES
-          : DONT_OVERRIDE;
+          : DONT_override;
 
   if (instr->arity() == 0) {
     ArrayNoArgumentConstructorStub stub(isolate(), kind, override_mode);

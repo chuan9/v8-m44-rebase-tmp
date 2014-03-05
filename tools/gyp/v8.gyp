@@ -1732,7 +1732,7 @@
           '../../src/harmony-typedarray.js',
           '../../src/harmony-regexp.js',
           '../../src/harmony-reflect.js',
-          '../../src/harmony-spread.js'
+          '../../src/harmony-spread.js',
           '../../src/simd128.js',
         ],
         'libraries_bin_file': '<(SHARED_INTERMEDIATE_DIR)/libraries.bin',

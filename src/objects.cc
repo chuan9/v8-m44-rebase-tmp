@@ -11774,6 +11774,27 @@ void DeoptimizationInputData::DeoptimizationInputDataPrint(
           break;
         }
 
+        case Translation::FLOAT32x4_REGISTER: {
+          int reg_code = iterator.Next();
+          os << "{input=" << SIMD128Register::AllocationIndexToString(reg_code)
+             << "}";
+          break;
+        }
+
+        case Translation::FLOAT64x2_REGISTER: {
+          int reg_code = iterator.Next();
+          os << "{input=" << SIMD128Register::AllocationIndexToString(reg_code)
+             << "}";
+          break;
+        }
+
+        case Translation::INT32x4_REGISTER: {
+          int reg_code = iterator.Next();
+          os << "{input=" << SIMD128Register::AllocationIndexToString(reg_code)
+             << "}";
+          break;
+        }
+
         case Translation::STACK_SLOT: {
           int input_slot_index = iterator.Next();
           os << "{input=" << input_slot_index << "}";
@@ -11799,6 +11820,24 @@ void DeoptimizationInputData::DeoptimizationInputDataPrint(
         }
 
         case Translation::DOUBLE_STACK_SLOT: {
+          int input_slot_index = iterator.Next();
+          os << "{input=" << input_slot_index << "}";
+          break;
+        }
+
+        case Translation::FLOAT32x4_STACK_SLOT: {
+          int input_slot_index = iterator.Next();
+          os << "{input=" << input_slot_index << "}";
+          break;
+        }
+
+        case Translation::FLOAT64x2_STACK_SLOT: {
+          int input_slot_index = iterator.Next();
+          os << "{input=" << input_slot_index << "}";
+          break;
+        }
+
+        case Translation::INT32x4_STACK_SLOT: {
           int input_slot_index = iterator.Next();
           os << "{input=" << input_slot_index << "}";
           break;
@@ -15561,7 +15600,7 @@ void GlobalObject::InvalidatePropertyCell(Handle<GlobalObject> global,
 
 
 Handle<Object> ExternalFloat32x4Array::SetValue(
-    Handle<ExternalFloat32x4Array> array,
+    Handle<JSObject> holder, Handle<ExternalFloat32x4Array> array,
     uint32_t index,
     Handle<Object> value) {
   float32x4_value_t cast_value;
@@ -15588,7 +15627,8 @@ Handle<Object> ExternalFloat32x4Array::SetValue(
 
 
 Handle<Object> ExternalInt32x4Array::SetValue(
-    Handle<ExternalInt32x4Array> array, uint32_t index, Handle<Object> value) {
+    Handle<JSObject> holder, Handle<ExternalInt32x4Array> array,
+    uint32_t index, Handle<Object> value) {
   int32x4_value_t cast_value;
   cast_value.storage[0] = 0;
   cast_value.storage[1] = 0;
@@ -15609,6 +15649,7 @@ Handle<Object> ExternalInt32x4Array::SetValue(
 
 
 Handle<Object> ExternalFloat64x2Array::SetValue(
+    Handle<JSObject> holder,
     Handle<ExternalFloat64x2Array> array,
     uint32_t index,
     Handle<Object> value) {

@@ -5064,7 +5064,7 @@ static void CreateArrayDispatch(MacroAssembler* masm,
     T stub(masm->isolate(), GetInitialFastElementsKind(), mode);
      __ TailCallStub(&stub);
 
-  } else if (mode == DONT_OVERRIDE) {
+  } else if (mode == DONT_override) {
     Register kind = x3;
     int last_index =
         GetSequenceIndexFromFastElementsKind(TERMINAL_FAST_ELEMENTS_KIND);
@@ -5103,7 +5103,7 @@ static void CreateArrayDispatchOneArgument(MacroAssembler* masm,
   Register kind = x3;
 
   Label normal_sequence;
-  if (mode == DONT_OVERRIDE) {
+  if (mode == DONT_override) {
     STATIC_ASSERT(FAST_SMI_ELEMENTS == 0);
     STATIC_ASSERT(FAST_HOLEY_SMI_ELEMENTS == 1);
     STATIC_ASSERT(FAST_ELEMENTS == 2);
@@ -5134,7 +5134,7 @@ static void CreateArrayDispatchOneArgument(MacroAssembler* masm,
                                             initial,
                                             DISABLE_ALLOCATION_SITES);
     __ TailCallStub(&stub);
-  } else if (mode == DONT_OVERRIDE) {
+  } else if (mode == DONT_override) {
     // We are going to create a holey array, but our kind is non-holey.
     // Fix kind and retry (only if we have an allocation site in the slot).
     __ Orr(kind, kind, 1);
@@ -5296,7 +5296,7 @@ void ArrayConstructorStub::Generate(MacroAssembler* masm) {
            UntagSmiFieldMemOperand(allocation_site,
                                    AllocationSite::kTransitionInfoOffset));
   __ And(kind, kind, AllocationSite::ElementsKindBits::kMask);
-  GenerateDispatchToArrayStub(masm, DONT_OVERRIDE);
+  GenerateDispatchToArrayStub(masm, DONT_override);
 
   __ Bind(&no_info);
   GenerateDispatchToArrayStub(masm, DISABLE_ALLOCATION_SITES);

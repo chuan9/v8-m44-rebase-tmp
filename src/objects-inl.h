@@ -4611,19 +4611,20 @@ Handle<Object> FixedTypedArray<Traits>::SetValue(
 
 template<> inline
 Handle<Object> FixedTypedArray<Float32x4ArrayTraits>::SetValue(
-    Handle<JSObject> holder, Handle<FixedTypedArray<Float32x4ArrayTraits> > array,
+    Handle<JSObject> holder,
+    Handle<FixedTypedArray<Float32x4ArrayTraits> > array,
     uint32_t index, Handle<Object> value) {
- float32x4_value_t cast_value;
- Handle<JSArrayBufferView> view = Handle<JSArrayBufferView>::cast(holder);
+  float32x4_value_t cast_value;
+  Handle<JSArrayBufferView> view = Handle<JSArrayBufferView>::cast(holder);
   if (!view->WasNeutered()) {
     cast_value.storage[0] =
-	    static_cast<float>(std::numeric_limits<double>::quiet_NaN());
+            static_cast<float>(std::numeric_limits<double>::quiet_NaN());
     cast_value.storage[1] =
-	    static_cast<float>(std::numeric_limits<double>::quiet_NaN());
+            static_cast<float>(std::numeric_limits<double>::quiet_NaN());
     cast_value.storage[2] =
-	    static_cast<float>(std::numeric_limits<double>::quiet_NaN());
+            static_cast<float>(std::numeric_limits<double>::quiet_NaN());
     cast_value.storage[3] =
-	    static_cast<float>(std::numeric_limits<double>::quiet_NaN());
+            static_cast<float>(std::numeric_limits<double>::quiet_NaN());
     if (index < static_cast<uint32_t>(array->length())) {
       if (value->IsFloat32x4()) {
         cast_value = Handle<Float32x4>::cast(value)->get();
@@ -4641,10 +4642,11 @@ Handle<Object> FixedTypedArray<Float32x4ArrayTraits>::SetValue(
 
 template<> inline
 Handle<Object> FixedTypedArray<Float64x2ArrayTraits>::SetValue(
-    Handle<JSObject> holder, Handle<FixedTypedArray<Float64x2ArrayTraits> > array,
+    Handle<JSObject> holder,
+    Handle<FixedTypedArray<Float64x2ArrayTraits> > array,
     uint32_t index, Handle<Object> value) {
- float64x2_value_t cast_value;
- Handle<JSArrayBufferView> view = Handle<JSArrayBufferView>::cast(holder);
+  float64x2_value_t cast_value;
+  Handle<JSArrayBufferView> view = Handle<JSArrayBufferView>::cast(holder);
   if (!view->WasNeutered()) {
     cast_value.storage[0] = std::numeric_limits<double>::quiet_NaN();
     cast_value.storage[1] = std::numeric_limits<double>::quiet_NaN();
@@ -4665,10 +4667,11 @@ Handle<Object> FixedTypedArray<Float64x2ArrayTraits>::SetValue(
 
 template<> inline
 Handle<Object> FixedTypedArray<Int32x4ArrayTraits>::SetValue(
-    Handle<JSObject> holder, Handle<FixedTypedArray<Int32x4ArrayTraits> > array,
+    Handle<JSObject> holder,
+    Handle<FixedTypedArray<Int32x4ArrayTraits> > array,
     uint32_t index, Handle<Object> value) {
- int32x4_value_t cast_value;
- Handle<JSArrayBufferView> view = Handle<JSArrayBufferView>::cast(holder);
+  int32x4_value_t cast_value;
+  Handle<JSArrayBufferView> view = Handle<JSArrayBufferView>::cast(holder);
   if (!view->WasNeutered()) {
     cast_value.storage[0] = 0;
     cast_value.storage[1] = 0;

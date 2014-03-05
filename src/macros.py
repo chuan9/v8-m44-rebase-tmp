@@ -238,11 +238,11 @@ define CAPTURE1 = 4;
 # For the regexp capture override array.  This has the same
 # format as the arguments to a function called from
 # String.prototype.replace.
-macro OVERRIDE_MATCH(override) = ((override)[0]);
-macro OVERRIDE_POS(override) = ((override)[(override).length - 2]);
-macro OVERRIDE_SUBJECT(override) = ((override)[(override).length - 1]);
+macro override_MATCH(override) = ((override)[0]);
+macro override_POS(override) = ((override)[(override).length - 2]);
+macro override_SUBJECT(override) = ((override)[(override).length - 1]);
 # 1-based so index of 1 returns the first capture
-macro OVERRIDE_CAPTURE(override, index) = ((override)[(index)]);
+macro override_CAPTURE(override, index) = ((override)[(index)]);
 
 # PropertyDescriptor return value indices - must match
 # PropertyDescriptorIndices in runtime-object.cc.

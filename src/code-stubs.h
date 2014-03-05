@@ -777,9 +777,9 @@ class InstanceofStub: public PlatformCodeStub {
 
 
 enum AllocationSiteOverrideMode {
-  DONT_OVERRIDE,
+  DONT_override,
   DISABLE_ALLOCATION_SITES,
-  LAST_ALLOCATION_SITE_OVERRIDE_MODE = DISABLE_ALLOCATION_SITES
+  LAST_ALLOCATION_SITE_override_MODE = DISABLE_ALLOCATION_SITES
 };
 
 
@@ -2427,7 +2427,7 @@ class ArrayConstructorStubBase : public HydrogenCodeStub {
 
  private:
   // Ensure data fits within available bits.
-  STATIC_ASSERT(LAST_ALLOCATION_SITE_OVERRIDE_MODE == 1);
+  STATIC_ASSERT(LAST_ALLOCATION_SITE_override_MODE == 1);
 
   class ElementsKindBits: public BitField<ElementsKind, 0, 8> {};
   class AllocationSiteOverrideModeBits: public
@@ -2442,7 +2442,7 @@ class ArrayNoArgumentConstructorStub : public ArrayConstructorStubBase {
   ArrayNoArgumentConstructorStub(
       Isolate* isolate,
       ElementsKind kind,
-      AllocationSiteOverrideMode override_mode = DONT_OVERRIDE)
+      AllocationSiteOverrideMode override_mode = DONT_override)
       : ArrayConstructorStubBase(isolate, kind, override_mode) {
   }
 
@@ -2462,7 +2462,7 @@ class ArraySingleArgumentConstructorStub : public ArrayConstructorStubBase {
   ArraySingleArgumentConstructorStub(
       Isolate* isolate,
       ElementsKind kind,
-      AllocationSiteOverrideMode override_mode = DONT_OVERRIDE)
+      AllocationSiteOverrideMode override_mode = DONT_override)
       : ArrayConstructorStubBase(isolate, kind, override_mode) {
   }
 
@@ -2482,7 +2482,7 @@ class ArrayNArgumentsConstructorStub : public ArrayConstructorStubBase {
   ArrayNArgumentsConstructorStub(
       Isolate* isolate,
       ElementsKind kind,
-      AllocationSiteOverrideMode override_mode = DONT_OVERRIDE)
+      AllocationSiteOverrideMode override_mode = DONT_override)
       : ArrayConstructorStubBase(isolate, kind, override_mode) {
   }
 

@@ -791,7 +791,7 @@ function ToNumber(x) {
   }
   if (IS_BOOLEAN(x)) return x ? 1 : 0;
   if (IS_UNDEFINED(x)) return NAN;
-  if (IS_SYMBOL(x)) throw MakeTypeError('symbol_to_number', []);
+  if (IS_SYMBOL(x)) throw MakeTypeError(kSymbolToNumber);
   if (IsFloat32x4(x)) return NAN;
   if (IsFloat64x2(x)) return NAN;
   if (IsInt32x4(x)) return NAN;
@@ -805,7 +805,7 @@ function NonNumberToNumber(x) {
   }
   if (IS_BOOLEAN(x)) return x ? 1 : 0;
   if (IS_UNDEFINED(x)) return NAN;
-  if (IS_SYMBOL(x)) throw MakeTypeError('symbol_to_number', []);
+  if (IS_SYMBOL(x)) throw MakeTypeError(kSymbolToNumber);
   if (IsFloat32x4(x)) return NAN;
   if (IsFloat64x2(x)) return NAN;
   if (IsInt32x4(x)) return NAN;
