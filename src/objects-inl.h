@@ -4611,26 +4611,29 @@ Handle<Object> FixedTypedArray<Traits>::SetValue(
 
 template<> inline
 Handle<Object> FixedTypedArray<Float32x4ArrayTraits>::SetValue(
-    Handle<FixedTypedArray<Float32x4ArrayTraits> > array,
+    Handle<JSObject> holder, Handle<FixedTypedArray<Float32x4ArrayTraits> > array,
     uint32_t index, Handle<Object> value) {
-  float32x4_value_t cast_value;
-  cast_value.storage[0] =
-      static_cast<float>(std::numeric_limits<double>::quiet_NaN());
-  cast_value.storage[1] =
-      static_cast<float>(std::numeric_limits<double>::quiet_NaN());
-  cast_value.storage[2] =
-      static_cast<float>(std::numeric_limits<double>::quiet_NaN());
-  cast_value.storage[3] =
-      static_cast<float>(std::numeric_limits<double>::quiet_NaN());
-  if (index < static_cast<uint32_t>(array->length())) {
-    if (value->IsFloat32x4()) {
-      cast_value = Handle<Float32x4>::cast(value)->get();
-    } else {
-      // Clamp undefined to NaN (default). All other types have been
-      // converted to a number type further up in the call chain.
-      DCHECK(value->IsUndefined());
+ float32x4_value_t cast_value;
+ Handle<JSArrayBufferView> view = Handle<JSArrayBufferView>::cast(holder);
+  if (!view->WasNeutered()) {
+    cast_value.storage[0] =
+	    static_cast<float>(std::numeric_limits<double>::quiet_NaN());
+    cast_value.storage[1] =
+	    static_cast<float>(std::numeric_limits<double>::quiet_NaN());
+    cast_value.storage[2] =
+	    static_cast<float>(std::numeric_limits<double>::quiet_NaN());
+    cast_value.storage[3] =
+	    static_cast<float>(std::numeric_limits<double>::quiet_NaN());
+    if (index < static_cast<uint32_t>(array->length())) {
+      if (value->IsFloat32x4()) {
+        cast_value = Handle<Float32x4>::cast(value)->get();
+      } else {
+    // Clamp undefined to NaN (default). All other types have been
+    // converted to a number type further up in the call chain.
+        DCHECK(value->IsUndefined());
+      }
+      array->set(index, cast_value);
     }
-    array->set(index, cast_value);
   }
   return Float32x4ArrayTraits::ToHandle(array->GetIsolate(), cast_value);
 }
@@ -4638,20 +4641,23 @@ Handle<Object> FixedTypedArray<Float32x4ArrayTraits>::SetValue(
 
 template<> inline
 Handle<Object> FixedTypedArray<Float64x2ArrayTraits>::SetValue(
-    Handle<FixedTypedArray<Float64x2ArrayTraits> > array,
+    Handle<JSObject> holder, Handle<FixedTypedArray<Float64x2ArrayTraits> > array,
     uint32_t index, Handle<Object> value) {
-  float64x2_value_t cast_value;
-  cast_value.storage[0] = std::numeric_limits<double>::quiet_NaN();
-  cast_value.storage[1] = std::numeric_limits<double>::quiet_NaN();
-  if (index < static_cast<uint32_t>(array->length())) {
-    if (value->IsFloat64x2()) {
-      cast_value = Handle<Float64x2>::cast(value)->get();
-    } else {
-      // Clamp undefined to NaN (default). All other types have been
-      // converted to a number type further up in the call chain.
-      DCHECK(value->IsUndefined());
+ float64x2_value_t cast_value;
+ Handle<JSArrayBufferView> view = Handle<JSArrayBufferView>::cast(holder);
+  if (!view->WasNeutered()) {
+    cast_value.storage[0] = std::numeric_limits<double>::quiet_NaN();
+    cast_value.storage[1] = std::numeric_limits<double>::quiet_NaN();
+    if (index < static_cast<uint32_t>(array->length())) {
+      if (value->IsFloat64x2()) {
+        cast_value = Handle<Float64x2>::cast(value)->get();
+      } else {
+        // Clamp undefined to NaN (default). All other types have been
+        // converted to a number type further up in the call chain.
+        DCHECK(value->IsUndefined());
+      }
+      array->set(index, cast_value);
     }
-    array->set(index, cast_value);
   }
   return Float64x2ArrayTraits::ToHandle(array->GetIsolate(), cast_value);
 }
@@ -4659,22 +4665,25 @@ Handle<Object> FixedTypedArray<Float64x2ArrayTraits>::SetValue(
 
 template<> inline
 Handle<Object> FixedTypedArray<Int32x4ArrayTraits>::SetValue(
-    Handle<FixedTypedArray<Int32x4ArrayTraits> > array,
+    Handle<JSObject> holder, Handle<FixedTypedArray<Int32x4ArrayTraits> > array,
     uint32_t index, Handle<Object> value) {
-  int32x4_value_t cast_value;
-  cast_value.storage[0] = 0;
-  cast_value.storage[1] = 0;
-  cast_value.storage[2] = 0;
-  cast_value.storage[3] = 0;
-  if (index < static_cast<uint32_t>(array->length())) {
-    if (value->IsInt32x4()) {
-      cast_value = Handle<Int32x4>::cast(value)->get();
-    } else {
-      // Clamp undefined to zero (default). All other types have been
-      // converted to a number type further up in the call chain.
-      DCHECK(value->IsUndefined());
+ int32x4_value_t cast_value;
+ Handle<JSArrayBufferView> view = Handle<JSArrayBufferView>::cast(holder);
+  if (!view->WasNeutered()) {
+    cast_value.storage[0] = 0;
+    cast_value.storage[1] = 0;
+    cast_value.storage[2] = 0;
+    cast_value.storage[3] = 0;
+    if (index < static_cast<uint32_t>(array->length())) {
+      if (value->IsInt32x4()) {
+        cast_value = Handle<Int32x4>::cast(value)->get();
+      } else {
+        // Clamp undefined to zero (default). All other types have been
+        // converted to a number type further up in the call chain.
+        DCHECK(value->IsUndefined());
+      }
+      array->set(index, cast_value);
     }
-    array->set(index, cast_value);
   }
   return Int32x4ArrayTraits::ToHandle(array->GetIsolate(), cast_value);
 }

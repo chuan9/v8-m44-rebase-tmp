@@ -2534,32 +2534,6 @@ enum PropertyAttribute {
   DontDelete = 1 << 2
 };
 
-enum ExternalArrayType {
-  kExternalInt8Array = 1,
-  kExternalUint8Array,
-  kExternalInt16Array,
-  kExternalUint16Array,
-  kExternalInt32Array,
-  kExternalInt32x4Array,
-  kExternalUint32Array,
-  kExternalFloat32Array,
-  kExternalFloat32x4Array,
-  kExternalFloat64x2Array,
-  kExternalFloat64Array,
-  kExternalUint8ClampedArray,
-
-  // Legacy constant names
-  kExternalByteArray = kExternalInt8Array,
-  kExternalUnsignedByteArray = kExternalUint8Array,
-  kExternalShortArray = kExternalInt16Array,
-  kExternalUnsignedShortArray = kExternalUint16Array,
-  kExternalIntArray = kExternalInt32Array,
-  kExternalUnsignedIntArray = kExternalUint32Array,
-  kExternalFloatArray = kExternalFloat32Array,
-  kExternalDoubleArray = kExternalFloat64Array,
-  kExternalPixelArray = kExternalUint8ClampedArray
-};
-
 /**
  * Accessor[Getter|Setter] are used as callback functions when
  * setting|getting a particular property. See Object and ObjectTemplate's
@@ -6750,7 +6724,7 @@ class Internals {
   static const int kJSObjectHeaderSize = 3 * kApiPointerSize;
   static const int kFixedArrayHeaderSize = 2 * kApiPointerSize;
   static const int kContextHeaderSize = 2 * kApiPointerSize;
-  static const int kContextEmbedderDataIndex = 89;
+  static const int kContextEmbedderDataIndex = 90;
   static const int kFullStringRepresentationMask = 0x07;
   static const int kStringEncodingMask = 0x4;
   static const int kExternalTwoByteRepresentationTag = 0x02;
@@ -6768,7 +6742,7 @@ class Internals {
   static const int kNullValueRootIndex = 7;
   static const int kTrueValueRootIndex = 8;
   static const int kFalseValueRootIndex = 9;
-  static const int kEmptyStringRootIndex = 168;
+  static const int kEmptyStringRootIndex = 10;
 
   // The external allocation limit should be below 256 MB on all architectures
   // to avoid that resource-constrained embedders run low on memory.
@@ -6783,7 +6757,7 @@ class Internals {
   static const int kNodeIsIndependentShift = 3;
   static const int kNodeIsPartiallyDependentShift = 4;
 
-  static const int kJSObjectType = 0xc3;
+  static const int kJSObjectType = 0xc4;
   static const int kFirstNonstringType = 0x80;
   static const int kOddballType = 0x83;
   static const int kForeignType = 0x86;

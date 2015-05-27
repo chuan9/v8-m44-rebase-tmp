@@ -198,8 +198,11 @@ enum ExternalArrayType {
   kExternalInt16Array,
   kExternalUint16Array,
   kExternalInt32Array,
+  kExternalInt32x4Array,
   kExternalUint32Array,
   kExternalFloat32Array,
+  kExternalFloat32x4Array,
+  kExternalFloat64x2Array,
   kExternalFloat64Array,
   kExternalUint8ClampedArray,
 };
