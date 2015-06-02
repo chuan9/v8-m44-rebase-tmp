@@ -3658,7 +3658,7 @@ void Simulator::VisitException(Instruction* instr) {
           case TRACE_DISABLE:
             set_log_parameters(log_parameters() & ~parameters);
             break;
-          case TRACE_override:
+          case TRACE_OVERRIDE:
             set_log_parameters(parameters);
             break;
           default:

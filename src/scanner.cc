@@ -1108,7 +1108,7 @@ uc32 Scanner::ScanUnicodeEscape() {
           harmony_classes ? Token::EXTENDS : Token::FUTURE_RESERVED_WORD) \
   KEYWORD_GROUP('f')                                                      \
   KEYWORD("false", Token::FALSE_LITERAL)                                  \
-  KEYWORD("finally", Token::finalLY)                                      \
+  KEYWORD("finally", Token::FINALLY)                                      \
   KEYWORD("for", Token::FOR)                                              \
   KEYWORD("function", Token::FUNCTION)                                    \
   KEYWORD_GROUP('i')                                                      \

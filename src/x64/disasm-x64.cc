@@ -146,8 +146,8 @@ enum InstructionType {
 
 enum Prefixes {
   ESCAPE_PREFIX = 0x0F,
-  OPERAND_SIZE_override_PREFIX = 0x66,
-  ADDRESS_SIZE_override_PREFIX = 0x67,
+  OPERAND_SIZE_OVERRIDE_PREFIX = 0x66,
+  ADDRESS_SIZE_OVERRIDE_PREFIX = 0x67,
   VEX3_PREFIX = 0xC4,
   VEX2_PREFIX = 0xC5,
   REPNE_PREFIX = 0xF2,
@@ -2032,7 +2032,7 @@ int DisassemblerX64::InstructionDecode(v8::internal::Vector<char> out_buffer,
   // Scan for prefixes.
   while (true) {
     current = *data;
-    if (current == OPERAND_SIZE_override_PREFIX) {  // Group 3 prefix.
+    if (current == OPERAND_SIZE_OVERRIDE_PREFIX) {  // Group 3 prefix.
       operand_size_ = current;
     } else if ((current & 0xF0) == 0x40) {  // REX prefix.
       setRex(current);

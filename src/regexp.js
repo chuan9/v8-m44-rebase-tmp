@@ -275,7 +275,7 @@ function RegExpToString() {
 // of the last successful match.
 function RegExpGetLastMatch() {
   if ($regexpLastMatchInfoOverride !== null) {
-    return override_MATCH($regexpLastMatchInfoOverride);
+    return OVERRIDE_MATCH($regexpLastMatchInfoOverride);
   }
   var regExpSubject = LAST_SUBJECT($regexpLastMatchInfo);
   return %_SubString(regExpSubject,
@@ -313,8 +313,8 @@ function RegExpGetLeftContext() {
     subject = LAST_SUBJECT($regexpLastMatchInfo);
   } else {
     var override = $regexpLastMatchInfoOverride;
-    start_index = override_POS(override);
-    subject = override_SUBJECT(override);
+    start_index = OVERRIDE_POS(override);
+    subject = OVERRIDE_SUBJECT(override);
   }
   return %_SubString(subject, 0, start_index);
 }
@@ -328,9 +328,9 @@ function RegExpGetRightContext() {
     subject = LAST_SUBJECT($regexpLastMatchInfo);
   } else {
     var override = $regexpLastMatchInfoOverride;
-    subject = override_SUBJECT(override);
-    var match = override_MATCH(override);
-    start_index = override_POS(override) + match.length;
+    subject = OVERRIDE_SUBJECT(override);
+    var match = OVERRIDE_MATCH(override);
+    start_index = OVERRIDE_POS(override) + match.length;
   }
   return %_SubString(subject, start_index, subject.length);
 }
@@ -343,7 +343,7 @@ function RegExpMakeCaptureGetter(n) {
   return function foo() {
     if ($regexpLastMatchInfoOverride) {
       if (n < $regexpLastMatchInfoOverride.length - 2) {
-        return override_CAPTURE($regexpLastMatchInfoOverride, n);
+        return OVERRIDE_CAPTURE($regexpLastMatchInfoOverride, n);
       }
       return '';
     }
